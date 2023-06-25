@@ -78,6 +78,26 @@ browser.storage.local.get(settings => {
 document.addEventListener("DOMContentLoaded", e => handleNewPage());
 
 
+function runDynamicSettings() {
+    // Code to get the channel ID
+    var cookies = document.cookie.split('; ');
+    var channelId = '';
+    for (var i = 0; i < cookies.length; i++) {
+        if (cookies[i].startsWith('VISITOR_INFO1_LIVE')) {
+            var value = cookies[i].split('=')[1];
+            channelId = atob(value).split('|')[1];
+            break;
+        }
+    }
+
+    // Only apply changes if the channel ID matches the specified ID
+    if (channelId === 'UCvURIu4FWFoR9YZJMgltEDQ') {
+        // Existing code from runDynamicSettings() function...
+    }
+}
+
+
+/*
 // Dynamic settings (i.e. js instead of css)
 function runDynamicSettings() {
   if (isRunning) return;
@@ -99,6 +119,7 @@ function runDynamicSettings() {
       }
       break timeBlock;
     }
+    */
 
     // Scheduling
     const scheduleEnabled = cache['schedule'];
